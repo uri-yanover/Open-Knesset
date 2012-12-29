@@ -2,6 +2,7 @@
 {% load lookup i18n tagging_tags laws_tags bills_tags common_visual_elements links_tags comments user_tags hitcount_tags committees_tags %}
 {% load static from staticfiles %}
 {% block extratitle %}{{ object.name }}{% endblock %}
+
 {% block keywords %}{{ object.name }}{% endblock %}
 {% block description %}{{ object.name }} - {% trans 'Open Knesset - Opening the Knesset to the public' %}{% endblock %}
 {% block extrajs %}
@@ -21,6 +22,8 @@
                 register_watch({{object.id}}, "agenda", "{% trans 'Watch' %}", "{% trans 'Unwatch' %}", {{watched_object|lower}}, "{% url user-follow-unfollow %}");
         });
     </script>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url agenda-activity-feed object.id %}">
+    
 {% endblock %}
 {% block subnav %}
     <a class="button" href="{% url agenda-list %}">{% trans "All Agendas" %}</a>
@@ -28,6 +31,8 @@
 {% block divcontent %}
     <ul class="actions">
         <li><span id="watch" class="awesome-button medium"></span></li>
+	<li><a href="{% url agenda-activity-feed object.id %}"><img src="{% static "icons/rss.png" %}" style="height:2em;"></a></li>
+	
         {% if user in object.editors.all %}
             <li><a class="awesome-button medium" href="{{ object.get_edit_absolute_url }}">{% trans "Edit" %}</a></li>
         {% endif %}
