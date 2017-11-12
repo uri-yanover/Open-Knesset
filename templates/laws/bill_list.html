@@ -1,6 +1,13 @@
 {% extends "site_base.html" %}
+<<<<<<< HEAD
 {% block extrahead %} <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'feeds-bills' %}" /> {% endblock %}
 {% load i18n i18ninclude laws_tags bills_tags %}
+=======
+{% load i18n i18ninclude laws_tags bills_tags static %}
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url feed-bills %}">
+{% endblock %}
+>>>>>>> 93f68f28080d5fba4ff5230bce842e9480925325
 {% block extratitle %}{{ title }}{% endblock %}
 {% block keywords %}{{ title }}{% endblock %}
 {% block description %}{{ title }} - {% trans 'Open Knesset - Opening the Knesset to the public' %}{% endblock %}
@@ -9,6 +16,7 @@
 {% block breadcrumbs %}
             <li class="active">{% trans "Legislation" %}</li>
 {% endblock %}
+<<<<<<< HEAD
 
 {% block subnav %}
         <ul class="actions">
@@ -18,6 +26,19 @@
                 </span>
             </li>
         </ul>
+=======
+{% block subnav %}    
+        <div>
+            <form action="." method="get" class="filter-form">
+            {{ form.as_p }}
+	    <a href="{% url feed-bills %}"><img src="{% static "icons/rss.png" %}" style="height:2em;"></a>	    
+		<input type="submit" value="{% trans "Filter" %}" class="submit awesome-button">
+		
+            </form>	    
+	    
+        </div>
+        <a target="_blank" href="http://hamishmar.org.il/?page_id=431">{% trans 'Explanation about the legislation process' %}</a><br>
+>>>>>>> 93f68f28080d5fba4ff5230bce842e9480925325
 {% endblock %}
 {% block divcontent %}
     <div id="legislation-information-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">

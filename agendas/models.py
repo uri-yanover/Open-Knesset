@@ -84,6 +84,11 @@ class AgendaVote(models.Model):
 
     def __unicode__(self):
         return u"%s %s" % (self.agenda,self.vote)
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('agenda-vote-detail', [str(self.id)])
+    
 
     def update_monthly_counters(self):
         agendaScore     = float(self.score) * float(self.importance)
@@ -149,6 +154,11 @@ class AgendaMeeting(models.Model):
 
     def __unicode__(self):
         return u"%s %s" % (self.agenda,self.meeting)
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('agenda-meeting-detail', [str(self.id)])
+    
 
 class AgendaBill(models.Model):
     agenda = models.ForeignKey('Agenda', related_name='agendabills')
@@ -170,6 +180,11 @@ class AgendaBill(models.Model):
 
     def __unicode__(self):
         return u"%s %s" % (self.agenda,self.bill)
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('agenda-bill-detail', [str(self.id)])
+    
 
 def get_top_bottom(lst, top, bottom):
     """

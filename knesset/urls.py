@@ -58,9 +58,15 @@ urlpatterns = patterns('',
     #(r'^search/', include('haystack.urls')),
     url(r'^search/', 'auxiliary.views.search', name='site-search'),
     url(r'^feeds/$', feeds.MainActionsFeed(), name='main-actions-feed'),
+<<<<<<< HEAD
     url(r'^feeds/comments/$', feeds.Comments(),name='feeds-comments'),
     url(r'^feeds/votes/$', feeds.Votes(),name='feeds-votes'),
     url(r'^feeds/bills/$', feeds.Bills(),name='feeds-bills'),
+=======
+    url(r'^feeds/comments/$', feeds.Comments(), name='feed-comments'),
+    url(r'^feeds/votes/$', feeds.Votes(), name='feed-votes'),
+    url(r'^feeds/bills/$', feeds.Bills(), name='feed-bills'),
+>>>>>>> 93f68f28080d5fba4ff5230bce842e9480925325
     (r'^feeds/annotations/$', feeds.Annotations()),
     #(r'^sitemap\.xml$', redirect_to, {'url': '/static/sitemap.xml'}),
     url(r'^sitemap\.xml$',

@@ -1,10 +1,22 @@
 {% extends "site_base.html" %}
+<<<<<<< HEAD
 {% block extrahead %} <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'feeds-comments' %}" /> {% endblock %}
 {% load i18n laws_tags %}
+=======
+{% load i18n laws_tags static %}
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url feed-comments %}">
+{% endblock %}
+>>>>>>> 93f68f28080d5fba4ff5230bce842e9480925325
 {% block extratitle %}{% trans 'Recent comments' %}{% endblock %}
 {% block description %}{% trans 'Recent comments' %} - {% endblock %}
 {% block divcontent %}
+    <ul class="actions">
+        <li><a href="{% url feed-comments %}"><img src="{% static "icons/rss.png" %}" style="height:2em;"></a></li>
+    </ul> 
+
     <h1>{% trans 'Recent comments' %}</h1>
+    
     {% for comment in object_list %}
     <div class="comment" id="c{{ comment.id }}">
         <h3>

@@ -1,6 +1,7 @@
 #encoding: UTF-8
 from django.conf.urls import url, patterns
 from django.utils.translation import ugettext
+<<<<<<< HEAD
 from django.views.generic.base import TemplateView
 
 from models import Agenda
@@ -16,6 +17,11 @@ from views import AgendaMeetingDetailView
 from views import AgendaMeetingsMoreView
 from views import agenda_add_view
 from views import update_editors_agendas
+=======
+from models import *
+from views import *
+from feeds import AgendaActivityFeed
+>>>>>>> 93f68f28080d5fba4ff5230bce842e9480925325
 
 agenda_list_view            = AgendaListView(queryset = Agenda.objects.all(),paginate_by=0, extra_context={'title':ugettext('Agendas')})
 agenda_detail_view          = AgendaDetailView.as_view()
@@ -24,7 +30,6 @@ agenda_detail_edit_view     = AgendaDetailEditView.as_view()
 agenda_vote_detail_view     = AgendaVoteDetailView.as_view()
 agenda_bill_detail_view     = AgendaBillDetailView.as_view()
 agenda_meeting_detail_view  = AgendaMeetingDetailView.as_view()
-
 
 urlpatterns = patterns('',
     url(r'^$', agenda_list_view, name='agenda-list'),
@@ -42,4 +47,5 @@ urlpatterns = patterns('',
     url(r'^embed/$', TemplateView.as_view(template_name='agendas/agenda-widget.html'), name="agenda-embed"),
 #    url(r'^user/(?P<user_id>\d+)/$', user_agendas_list_view, name),
 #    url(r'^vote/(?P<vote_id>\d+)/$', ascribe_agenda_to_vote),
+    url(r'^(?P<object_id>\d+)/rss/$', AgendaActivityFeed(), name='agenda-activity-feed'),
 )
